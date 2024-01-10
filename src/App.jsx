@@ -199,7 +199,7 @@ export default function App() {
             {/* トレーニングメニュー */}
             <div id="trainingMenu">{generateMenuHTML()}</div>
             <h2>
-  全てチェックできたら<a href="../index2.html">こちら</a>をクリックしてください。
+  全てチェックできたら<a href="https://stately-cucurucho-e2126a.netlify.app/">こちら</a>をクリックしてください。
   </h2>
         </div>
     );
