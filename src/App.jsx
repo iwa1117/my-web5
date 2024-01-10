@@ -199,7 +199,7 @@ export default function App() {
             {/* トレーニングメニュー */}
             <div id="trainingMenu">{generateMenuHTML()}</div>
             <h2>
-  全てチェックできたら<a href="index2.html">こちら</a>をクリックしてください。
+  全てチェックできたら<a href="https://legendary-kulfi-83b7f5.netlify.app/index2.html">こちら</a>をクリックしてください。
   </h2>
         </div>
     );
