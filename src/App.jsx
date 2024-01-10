@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/style.css';
 
 // Reactコンポーネントの外に関数を定義
 function calculateBMI(weight, height) {
@@ -150,25 +151,7 @@ export default function App() {
     const generateMenuHTML = () => {
         return (
             <div>
-                <h2>今日のトレーニングメニュー</h2>
-                <div>
-                    <input
-                        type="checkbox"
-                        id="running"
-                        checked={checkedItems.running}
-                        onChange={() => handleCheckboxChange('running')}
-                    />
-                    <label htmlFor="running">ランニング１５分</label>
-                </div>
-                <div>
-                    <input
-                        type="checkbox"
-                        id="sitUps"
-                        checked={checkedItems.sitUps}
-                        onChange={() => handleCheckboxChange('sitUps')}
-                    />
-                    <label htmlFor="sitUps">腹筋５０回</label>
-                </div>
+                
                 {/* 他のメニュー項目のチェックボックスとラベル */}
             </div>
         );
@@ -177,7 +160,7 @@ export default function App() {
     return (
         <div>
             <h1>今日のダイエット</h1>
-            <h2>まずは今の自分の現状を確認しましょう。</h2>
+            <p>まずは身長と体重を入力してBMIを見て自分の現状を確認してみましょう。</p>
             {/* BMI計算関連の要素 */}
             <input type="number" id="weight" placeholder="体重(kg)" />
             <input type="number" id="height" placeholder="身長(cm)" />

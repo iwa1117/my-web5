@@ -1,0 +1,24 @@
+body {
+    background-color: rgb(159, 214, 251);
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* h1要素（ヘッダー）のスタイル */
+  h1 {
+    text-align: center;
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    margin-top: 0;
+  }
+  
+  /* p要素（目標記入欄）のスタイル */
+  p {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 25px;
+  }
+  div{text-align: center;}
+
