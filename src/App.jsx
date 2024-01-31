@@ -182,8 +182,10 @@ export default function App() {
             {/* トレーニングメニュー */}
             <div id="trainingMenu">{generateMenuHTML()}</div>
             <h2>
-  全てチェックできたら<a href="https://rad-faun-ca7d80.netlify.app/">こちら</a>をクリックしてください。
+  全てチェックできたらwww<a href="https://rad-faun-ca7d80.netlify.app/">こちら</a>をクリックしてください。
   </h2>
+  <button type="button" id="summaryButton" onclick="displaySummary()">表示</button>
+
         </div>
     );
 }
