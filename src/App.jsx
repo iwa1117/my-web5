@@ -157,35 +157,145 @@ export default function App() {
         );
     };
 
+    const [message, setMessage] = useState('');
+    const [goals, setGoals] = useState([]);
+    
+    const [showGoalForm, setShowGoalForm] = useState(false);
+    // ボタンがクリックされた時の処理
+const handleButtonClicked = () => {
+    saveGoal(); // 目標の保存
+    displayGoals(); // 目標の表示
+    displayMessage(); // 「お疲れさまでした!!」の表示
+    setShowGoalForm(true);
+};
+
+
+const handleGoalSubmit = (event) => {
+    event.preventDefault();
+    const goalInput = document.getElementById('goalInput');
+    const goal = goalInput.value;
+
+    // 入力された目標を保存する（ここではローカルストレージを使用）
+    saveGoal(goal);
+
+    // メッセージを表示
+    displayMessage();
+
+    // 目標を表示する要素を取得
+    const goalList = document.getElementById('goalList');
+
+    // 目標リストをクリア
+    goalList.innerHTML = '';
+
+    // ローカルストレージから目標を読み込み、リストに表示する
+    const savedGoals = JSON.parse(localStorage.getItem('goals')) || [];
+
+    savedGoals.forEach((savedGoal) => {
+        const goalItem = document.createElement('div');
+        goalItem.classList.add('goal-item');
+
+        const goalText = document.createElement('p');
+        goalText.textContent = savedGoal;
+
+        const messageText = document.createElement('p');
+        messageText.textContent = '素晴らしい目標です！明日も頑張りましょう！！';
+
+        goalItem.appendChild(goalText);
+        goalItem.appendChild(messageText);
+
+        goalItem.addEventListener('click', () => handleGoalClick(savedGoal));
+        goalList.appendChild(goalItem);
+    });
+};
+    const displayGoals = () => {
+        // 目標を表示する要素を取得
+        const goalList = document.getElementById('goalList');
+    
+        // 目標リストをクリア
+        goalList.innerHTML = '';
+    
+        // 入力された目標を表示
+        goals.forEach((goal, index) => {
+            const goalItem = document.createElement('div');
+            goalItem.classList.add('goal-item');
+    
+            const goalText = document.createElement('p');
+            goalText.textContent = goal;
+    
+            const messageText = document.createElement('p');
+            messageText.textContent = '素晴らしい目標です！明日も頑張りましょう！！';
+    
+            goalItem.appendChild(goalText);
+            goalItem.appendChild(messageText);
+    
+            goalItem.addEventListener('click', () => handleGoalClick(goal));
+            goalList.appendChild(goalItem);
+        });
+    
+        // 新しく追加された目標に関するメッセージを表示
+        if (goals.length > 0) {
+            setMessage('素晴らしい目標です！明日も頑張りましょう！！');
+        }
+    };
+    
+  
+      // ローカルストレージに目標を保存する関数
+      const saveGoal = (goal) => {
+        let savedGoals = JSON.parse(localStorage.getItem('goals')) || [];
+        savedGoals = [goal]; // 新しい目標で上書き
+        localStorage.setItem('goals', JSON.stringify(savedGoals)); // 目標を保存
+    };
+      // 入力された目標に関するメッセージを表示する関数
+      const displayMessage = () => {
+        setMessage('お疲れさまでした!!');
+    };
+      
     return (
-        <div>
-            <h1>今日のダイエット</h1>
-            <p>まずは身長と体重を入力してBMIを見て自分の現状を確認してみましょう。</p>
-            {/* BMI計算関連の要素 */}
-            <input type="number" id="weight" placeholder="体重(kg)" />
-            <input type="number" id="height" placeholder="身長(cm)" />
-            <button onClick={handleCalculateBMI}>BMIを計算する</button>
-            <div id="result"></div>
+    <div>
+        <h1>今日のダイエット</h1>
+        <p>まずは身長と体重を入力してBMIを見て自分の現状を確認してみましょう。</p>
+        {/* BMI計算関連の要素 */}
+        <input type="number" id="weight" placeholder="体重(kg)" />
+        <input type="number" id="height" placeholder="身長(cm)" />
+        <button onClick={handleCalculateBMI}>BMIを計算する</button>
+        <div id="result">
+    </div>
 
             {/* 気分選択の要素 */}
-            <div>
-                <h2>今日はどんな気分ですか？</h2>
-                <select id="mood" onChange={handleMoodChange}>
-                    <option value="active">いっぱい動きたい</option>
-                    <option value="light">ちょっとだけ運動したい</option>
-                    <option value="neutral">あんま気分のらない</option>
-                    <option value="strength">筋トレ多め</option>
-                    <option value="stretch">ストレッチたくさん</option>
-                </select>
+    <div>
+        <h2>今日はどんな気分ですか？</h2>
+        <select id="mood" onChange={handleMoodChange}>
+            <option value="active">いっぱい動きたい</option>
+            <option value="light">ちょっとだけ運動したい</option>
+            <option value="neutral">あんま気分のらない</option>
+            <option value="strength">筋トレ多め</option>
+            <option value="stretch">ストレッチたくさん</option>
+        </select>
+    </div>
+
+        {/* トレーニングメニュー */}
+    <div id="trainingMenu">{generateMenuHTML()}</div>
+    <h2>全てチェックできたら終了をクリックしてください。</h2>
+
+    <div>
+                <button onClick={handleButtonClicked}>終了</button>
+                <p>{message}</p>
             </div>
 
-            {/* トレーニングメニュー */}
-            <div id="trainingMenu">{generateMenuHTML()}</div>
-            <h2>
-  全てチェックできたら<a href="https://rad-faun-ca7d80.netlify.app/">こちら</a>をクリックしてください。
-  </h2>
-  <button type="button" id="summaryButton" onclick="displaySummary()">表示</button>
+            {showGoalForm && (
+            <form id="goalForm" onSubmit={handleGoalSubmit}>
+                <label htmlFor="goalInput">目標：</label>
+                <input type="text" id="goalInput" name="goal" required />
+                <button type="submit">目標を設定</button>
+            </form>
+        )}
 
+        <h4>明日の目標</h4>
+        <div id="goalList">
+            {goals.map((goal, index) => (
+                <p key={index}>{goal}</p>
+            ))}
         </div>
-    );
+    </div>
+);
 }
