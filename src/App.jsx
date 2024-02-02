@@ -12,7 +12,7 @@ function displayResult(bmi) {
         document.getElementById('result').innerHTML = `Your BMI is: ${bmi}`;
         document.getElementById('result').innerHTML += '<br>痩せ型ですもう少し筋肉をつけてみましょう<br>';
         var imgElement = document.createElement('img');
-        imgElement.src = '../picture/yase01_boy.png'; // 画像のパスを実際のものに変更
+        imgElement.src = 'my-web5/picture/yase01_boy.png'; // 画像のパスを実際のものに変更
         imgElement.alt = 'やせ';
         imgElement.width = 100;
         document.getElementById('result').appendChild(imgElement);
@@ -22,7 +22,7 @@ function displayResult(bmi) {
         document.getElementById('result').innerHTML = `Your BMI is: ${bmi}`;
         document.getElementById('result').innerHTML += '<br>標準型です維持を目指しましょう<br>';
         var imgElement = document.createElement('img');
-        imgElement.src = '../picture/stand1_front01_boy.png'; // 画像のパスを実際のものに変更
+        imgElement.src = 'my-web5/picture/stand1_front01_boy.png'; // 画像のパスを実際のものに変更
         imgElement.alt = '標準';
         imgElement.width = 100;
         document.getElementById('result').appendChild(imgElement);
@@ -32,7 +32,7 @@ function displayResult(bmi) {
         document.getElementById('result').innerHTML = `Your BMI is: ${bmi}`;
         document.getElementById('result').innerHTML += '<br>標準型です維持を目指しましょう<br>';
         var imgElement = document.createElement('img');
-        imgElement.src = '../picture/himan03_youngman.png'; // 画像のパスを実際のものに変更
+        imgElement.src = 'my-web5/picture/himan03_youngman.png'; // 画像のパスを実際のものに変更
         imgElement.alt = 'ふと';
         imgElement.width = 100;
         document.getElementById('result').appendChild(imgElement);
