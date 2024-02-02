@@ -2,23 +2,42 @@ body {
     background-color: rgb(159, 214, 251);
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+  
   }
   
-  /* h1要素（ヘッダー）のスタイル */
-  h1 {
+
+  
+  /* p要素（目標記入欄）のスタイル */
+  p {
+    text-align: center;
+    margin-top: 100px;
+    font-size: 25px;
+  }
+  div{text-align: center;}
+
+  header {
     text-align: center;
     background-color: #333;
     color: white;
     padding: 20px 0;
     margin-top: 0;
-  }
-  
-  /* p要素（目標記入欄）のスタイル */
-  p {
+    position: fixed; 
+    width: 100%; 
+    top: 0; 
+    z-index: 1000;
+   }
+  /* styles.css */
+  #goalList {
+    background-color: rgba(0, 81, 255, 0.336);
+    padding: 10px;
+    border-radius: 50px;
+    margin: 20px auto;
+    width: 50%;
     text-align: center;
-    margin-top: 50px;
-    font-size: 25px;
   }
-  div{text-align: center;}
 
+  
+  
+  
+  
+  

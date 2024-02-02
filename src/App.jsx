@@ -8,7 +8,36 @@ function calculateBMI(weight, height) {
 }
 
 function displayResult(bmi) {
-    document.getElementById('result').innerHTML = `Your BMI is: ${bmi}`;
+     if(bmi<18.5){
+        document.getElementById('result').innerHTML = `Your BMI is: ${bmi}`;
+        document.getElementById('result').innerHTML += '<br>痩せ型ですもう少し筋肉をつけてみましょう<br>';
+        var imgElement = document.createElement('img');
+        imgElement.src = 'picture/yase01_boy.png'; // 画像のパスを実際のものに変更
+        imgElement.alt = 'テスト画像';
+        imgElement.width = 100;
+        document.getElementById('result').appendChild(imgElement);
+    }
+
+    if(bmi>=18.5 && bmi<25){
+        document.getElementById('result').innerHTML = `Your BMI is: ${bmi}`;
+        document.getElementById('result').innerHTML += '<br>標準型です維持を目指しましょう<br>';
+        var imgElement = document.createElement('img');
+        imgElement.src = 'picture/stand1_front01_boy.png'; // 画像のパスを実際のものに変更
+        imgElement.alt = 'テスト画像';
+        imgElement.width = 100;
+        document.getElementById('result').appendChild(imgElement);
+    }
+
+    if(bmi>=25){
+        document.getElementById('result').innerHTML = `Your BMI is: ${bmi}`;
+        document.getElementById('result').innerHTML += '<br>標準型です維持を目指しましょう<br>';
+        var imgElement = document.createElement('img');
+        imgElement.src = 'picture/himan03_youngman.png'; // 画像のパスを実際のものに変更
+        imgElement.alt = 'テスト画像';
+        imgElement.width = 100;
+        document.getElementById('result').appendChild(imgElement);
+    }
+    
 }
 
 function showTrainingMenu(selection) {
@@ -249,16 +278,18 @@ const handleGoalSubmit = (event) => {
       const displayMessage = () => {
         setMessage('お疲れさまでした!!');
     };
-      
+
     return (
     <div>
-        <h1>今日のダイエット</h1>
+        <header>今日のダイエット</header>
+        <p>本ページは、ダイエットしたい方、運動不足の方、体を動かすことが好きな方に向けたおすすめの機能を備えたページです。概要としては、BMI計算、気分に合わせた運動メニューの提案、そして目標の設定を行っています。早速、指示に従ってダイエットを始めましょう！</p>
         <p>まずは身長と体重を入力してBMIを見て自分の現状を確認してみましょう。</p>
         {/* BMI計算関連の要素 */}
         <input type="number" id="weight" placeholder="体重(kg)" />
         <input type="number" id="height" placeholder="身長(cm)" />
         <button onClick={handleCalculateBMI}>BMIを計算する</button>
         <div id="result">
+
     </div>
 
             {/* 気分選択の要素 */}
@@ -290,12 +321,19 @@ const handleGoalSubmit = (event) => {
             </form>
         )}
 
-        <h4>明日の目標</h4>
+        <h2>明日の目標</h2>
         <div id="goalList">
             {goals.map((goal, index) => (
-                <p key={index}>{goal}</p>
+                <h3 key={index}>{goal}</h3>
             ))}
         </div>
+        <footer>
+        <p>
+          日本大学情報科学科 ２年 5422077 岩崎真衣 <br />
+          日本大学文理学部情報科学科 Webプログラミングの演習課題
+        </p>
+      </footer>
     </div>
+
 );
 }
